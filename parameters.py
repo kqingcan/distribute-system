@@ -27,15 +27,15 @@ if __name__ == '__main__':
     b1_value = b1.get_value()
     b2_value = b2.get_value()
 
-    while w_p_task.get(timeout=10) == "get_parameters":
+    while w_p_task.get(timeout=1000) == "get_parameters":
         w_p_result.put(w1_value)
         w_p_result.put(w2_value)
         w_p_result.put(b1_value)
         w_p_result.put(b2_value)
-        delta_w1 = w_p_task.get(timeout=10)
-        delta_w2 = w_p_task.get(timeout=10)
-        delta_b1 = w_p_task.get(timeout=10)
-        delta_b2 = w_p_task.get(timeout=10)
+        delta_w1 = w_p_task.get(timeout=100)
+        delta_w2 = w_p_task.get(timeout=100)
+        delta_b1 = w_p_task.get(timeout=100)
+        delta_b2 = w_p_task.get(timeout=100)
         w1_value = w1_value + delta_w1
         w2_value = w2_value + delta_w2
         b1_value = b1_value + delta_b1

@@ -23,13 +23,6 @@ def deal_inputs(file_inputs):
     return inputs_temp
 
 
-def calculate_error(output, goal):
-    error = 0
-    for i in range(len(goal)):
-        error += 0.5*np.square(goal[i] - output[i])
-    return error
-
-
 class Client:
 
     def __init__(self, input_nums, hidden_nums, output_nums):

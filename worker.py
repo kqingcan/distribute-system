@@ -62,10 +62,10 @@ if __name__ == '__main__':
 
             x = node_dict["x"]
             w_p_task.put("get_parameters")
-            w1_value = w_p_result.get(timeout=10)
-            w2_value = w_p_result.get(timeout=10)
-            b1_value = w_p_result.get(timeout=10)
-            b2_value = w_p_result.get(timeout=10)
+            w1_value = w_p_result.get(timeout=100)
+            w2_value = w_p_result.get(timeout=100)
+            b1_value = w_p_result.get(timeout=100)
+            b2_value = w_p_result.get(timeout=100)
             w2 = node_dict["w2"]
             w1 = node_dict["w1"]
             b1 = node_dict["b1"]
@@ -76,9 +76,7 @@ if __name__ == '__main__':
             b2.set_value(b2_value)
             h_out = node_dict["h_out"]
             x.set_value(np.mat(input_temp[0]))
-            # print(x.get_value())
-            # print(node_list[0].get_left_child().get_name())
-            # print(node_list[0].get_left_child().get_value())
+
             calculate_out(node_list)
             res1 = np.array(loss_function_der(s.get_value().tolist()[0], input_temp[1])) * np.array(
                 sigmoid_der(s.get_value().tolist()[0]))
@@ -94,10 +92,10 @@ if __name__ == '__main__':
             w_p_task.put(delta_bias2)
 
     w_p_task.put("get_parameters")
-    w1_value = w_p_result.get(timeout=10)
-    w2_value = w_p_result.get(timeout=10)
-    b1_value = w_p_result.get(timeout=10)
-    b2_value = w_p_result.get(timeout=10)
+    w1_value = w_p_result.get(timeout=100)
+    w2_value = w_p_result.get(timeout=100)
+    b1_value = w_p_result.get(timeout=100)
+    b2_value = w_p_result.get(timeout=100)
     w2 = node_dict["w2"]
     w1 = node_dict["w1"]
     b1 = node_dict["b1"]
@@ -122,5 +120,3 @@ if __name__ == '__main__':
     accuracy = float(correct)/count
     print("accuracy: ", accuracy)
     m_w_result.put(accuracy)
-
-    w_p_result.get(timeout=100)
