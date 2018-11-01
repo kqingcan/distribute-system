@@ -45,6 +45,7 @@ if __name__ == '__main__':
 
     node_list = m_w_task.get(timeout=100)
     inputs = m_w_task.get(timeout=100)
+    test = m_w_task.get(timeout=100)
     learning_rate = m_w_task.get(timeout=100)
     s = node_list[-1]
     node_dict = {}
@@ -56,7 +57,7 @@ if __name__ == '__main__':
         node_temp = node_temp.get_left_child()
     node_dict[node_temp.get_name()] = node_temp
 
-    for i in range(100):
+    for i in range(200):
         print(i)
         for input_temp in inputs:
 
@@ -107,7 +108,7 @@ if __name__ == '__main__':
 
     count = 0
     correct = 0
-    for input_temp in inputs:
+    for input_temp in test:
         x = node_dict["x"]
         x.set_value(np.mat(input_temp[0]))
         output = calculate_out(node_list).tolist()[0]

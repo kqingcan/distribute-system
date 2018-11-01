@@ -13,6 +13,7 @@ if __name__ == '__main__':
 
     graph = c_m_task.get(timeout=100)
     inputs = c_m_task.get(timeout=100)
+    test = c_m_task.get(timeout=100)
     learning_rate = c_m_task.get(timeout=100)
     node_list1 = []
     node = graph
@@ -22,6 +23,7 @@ if __name__ == '__main__':
     node_list = list(reversed(node_list1))
     m_w_task.put(node_list)
     m_w_task.put(inputs)
+    m_w_task.put(test)
     m_w_task.put(learning_rate)
     m_p_task.put(graph)
     accuracy = m_w_result.get(timeout=1000)

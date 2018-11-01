@@ -64,14 +64,21 @@ class Client:
 
 if __name__ == '__main__':
     file_inputs = read_file("student_data.csv")
-    inputs = deal_inputs(file_inputs)
-    client = Client(3, 15, 1)
+    total_inputs = deal_inputs(file_inputs)
+    inputs = []
+    test = []
+    for i in range(320):
+        inputs.append(total_inputs[i+80])
+    for i in range(80):
+        test.append(total_inputs[i])
+    client = Client(3, 10, 1)
     # client.train(inputs)
     # client.test(inputs)
     # 创建与master之间的连接
-    learning_rate = 0.05
+    learning_rate = 0.04
     c_m_task, c_m_result = session.register('127.0.0.1', 8001, b'client_master')
     c_m_task.put(client.generate_graph())
     c_m_task.put(inputs)
+    c_m_task.put(test)
     c_m_task.put(learning_rate)
     print("accuracy:  ", c_m_result.get(timeout=1000))
